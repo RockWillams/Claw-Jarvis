@@ -19,6 +19,10 @@
 
 > 💡 **阿里云百炼 Coding Plan 优惠**：[立即领取优惠](https://www.aliyun.com/benefit/ai/aistar?clubBiz=subTask..12405075..10263..)
 
+### 📱 技术交流群
+
+![技术交流群二维码](assets/weixin.png)
+
 ---
 
 ## ✨ 核心特性
