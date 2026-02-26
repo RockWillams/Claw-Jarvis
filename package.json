@@ -1,18 +1,20 @@
 {
-  "name": "openclaw-chat-ui",
+  "name": "claw-jarvis",
   "version": "1.0.0",
-  "description": "OpenClaw Chat UI - A desktop chat client for OpenClaw",
+  "description": "Claw Jarvis - 你的贾维斯助手",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "dev": "electron . --dev"
   },
   "keywords": [
+    "claw-jarvis",
+    "jarvis",
     "openclaw",
     "chat",
     "electron"
   ],
-  "author": "",
+  "author": "rockwillams",
   "license": "MIT",
   "devDependencies": {
     "electron": "^28.0.0"

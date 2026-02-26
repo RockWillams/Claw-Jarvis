@@ -1,8 +1,8 @@
-# OpenClaw Chat UI - PowerShell 启动脚本
+# Claw Jarvis - PowerShell 启动脚本
 # 右键 -> "使用 PowerShell 运行"
 
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  OpenClaw Chat UI" -ForegroundColor Cyan
+Write-Host "  Claw Jarvis - 你的贾维斯助手" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 

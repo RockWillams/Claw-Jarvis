@@ -1,8 +1,8 @@
 @echo off
-title OpenClaw Chat UI
+title Claw Jarvis - 你的贾维斯助手
 
 echo ========================================
-echo   OpenClaw Chat UI
+echo   Claw Jarvis
 echo ========================================
 echo.
 echo Starting...

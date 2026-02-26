@@ -1,4 +1,4 @@
-# 🦞 OpenClaw Chat UI
+# 🦞 Claw Jarvis | 你的贾维斯助手
 
 一个基于 Electron 的 OpenClaw 桌面聊天客户端，支持内网远程访问 Gateway 服务。
 
@@ -229,7 +229,7 @@ New-NetFirewallRule -DisplayName "OpenClaw Gateway" -Direction Inbound -LocalPor
 ## 📁 项目结构
 
 ```
-openclaw-chat-ui/
+claw-jarvis/
 ├── main.js              # Electron 主进程
 ├── preload.js           # 预加载脚本
 ├── src/
@@ -305,6 +305,9 @@ npm run build
 rmdir /s /q node_modules
 npm install
 npm start
+
+# 查看日志
+openclaw gateway run --bind lan --verbose
 ```
 
 ### 依赖安装失败
@@ -368,5 +371,4 @@ MIT License
 
 ---
 
-**开发工具**: OpenClaw + Electron
-**设计理念**: 用户体验优先
+**Claw Jarvis - 你的贾维斯助手**

@@ -73,7 +73,7 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     },
-    title: 'OpenClaw Chat'
+    title: 'Claw Jarvis'
   });
 
   mainWindow.loadFile('src/index.html');
@@ -216,7 +216,7 @@ function createWebSocket(sessionId, gatewayUrl, token) {
                   token: token
                 },
                 locale: 'zh-CN',
-                userAgent: 'openclaw-chat-ui/1.0.0',
+                userAgent: 'claw-jarvis/1.0.0',
                 device: {
                   id: deviceId,
                   publicKey: publicKeyPem,
