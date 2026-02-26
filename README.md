@@ -226,6 +226,16 @@ New-NetFirewallRule -DisplayName "OpenClaw Gateway" -Direction Inbound -LocalPor
 
 ---
 
+## 📸 界面预览
+
+### 连接界面
+![连接界面](assets/login.png)
+
+### 聊天对话界面
+![聊天对话界面](assets/dialog.png)
+
+---
+
 ## 📁 项目结构
 
 ```

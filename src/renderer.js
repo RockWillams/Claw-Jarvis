@@ -1233,9 +1233,11 @@ async function uploadFile(filePath) {
     // 添加到待发送文件列表
     pendingFiles.push(fileInfo);
 
-    // 如果是图片，显示 OCR 提示
+    // 如果是图片，提示用户描述图片内容
     if (fileInfo.isImage) {
-      showToast('图片已上传，将自动进行 OCR 识别');
+      showToast('图片已上传，请描述图片内容后发送');
+      // 自动聚焦到输入框
+      setTimeout(() => messageInput.focus(), 100);
     } else {
       showToast(`文件已上传：${fileName}`);
     }
