@@ -25,7 +25,15 @@
       "Bash(pkill:*)",
       "Bash(git init:*)",
       "Bash(git config:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(git remote:*)",
+      "Bash(ssh:*)",
+      "Bash(chmod 600:*)",
+      "Bash(ssh-add:*)"
     ]
   }
 }
