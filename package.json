@@ -1,0 +1,23 @@
+{
+  "name": "openclaw-chat-ui",
+  "version": "1.0.0",
+  "description": "OpenClaw Chat UI - A desktop chat client for OpenClaw",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": [
+    "openclaw",
+    "chat",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0"
+  },
+  "dependencies": {
+    "ws": "^8.19.0"
+  }
+}

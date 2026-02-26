@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gateway 测试</title>
+  <style>
+    body { background: #1a1a2e; color: #eee; font-family: sans-serif; padding: 40px; }
+    .status { padding: 20px; margin: 20px 0; border-radius: 10px; }
+    .success { background: #4caf50; }
+    .error { background: #f44336; }
+    button { padding: 14px 28px; font-size: 16px; background: #ff6b35; color: white; border: none; border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Gateway 连接测试</h1>
+  
+  <div id="status" class="status error">未测试</div>
+  
+  <button onclick="testGateway()">测试连接</button>
+  
+  <div id="log" style="margin-top: 20px; font-family: monospace; white-space: pre-wrap;"></div>
+  
+  <script>
+    async function testGateway() {
+      const url = 'http://127.0.0.1:18789';
+      const statusDiv = document.getElementById('status');
+      const logDiv = document.getElementById('log');
+      
+      logDiv.textContent = `测试地址：${url}\n`;
+      
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        
+        logDiv.textContent += '发送请求...\n';
+        
+        const response = await fetch(url, {
+          method: 'HEAD',
+          signal: controller.signal,
+          mode: 'no-cors'
+        });
+        
+        clearTimeout(timeoutId);
+        
+        logDiv.textContent += `响应状态：${response.status}\n`;
+        logDiv.textContent += '连接成功！\n';
+        
+        statusDiv.className = 'status success';
+        statusDiv.textContent = '✅ Gateway 在线';
+      } catch (error) {
+        logDiv.textContent += `错误：${error.message}\n`;
+        statusDiv.className = 'status error';
+        statusDiv.textContent = '❌ Gateway 未运行';
+      }
+    }
+  </script>
+</body>
+</html>

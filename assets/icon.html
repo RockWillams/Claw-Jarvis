@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OpenClaw Chat Icon</title>
+  <style>
+    body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: #1a1a2e; }
+    svg { width: 512px; height: 512px; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <circle cx="256" cy="256" r="256" fill="#ff6b35"/>
+    
+    <!-- 螃蟹身体 -->
+    <ellipse cx="256" cy="280" rx="120" ry="90" fill="#e85a2d"/>
+    
+    <!-- 螃蟹钳子 -->
+    <path d="M 140 260 Q 100 240 80 200 Q 70 180 90 170 Q 110 160 130 180 Q 150 200 160 240" fill="#e85a2d" stroke="#c44520" stroke-width="3"/>
+    <path d="M 372 260 Q 412 240 432 200 Q 442 180 422 170 Q 402 160 382 180 Q 362 200 352 240" fill="#e85a2d" stroke="#c44520" stroke-width="3"/>
+    
+    <!-- 螃蟹腿 -->
+    <g stroke="#c44520" stroke-width="8" fill="none" stroke-linecap="round">
+      <path d="M 150 250 L 100 230"/>
+      <path d="M 150 270 L 90 260"/>
+      <path d="M 150 290 L 100 300"/>
+      <path d="M 150 310 L 110 340"/>
+      
+      <path d="M 362 250 L 412 230"/>
+      <path d="M 362 270 L 422 260"/>
+      <path d="M 362 290 L 412 300"/>
+      <path d="M 362 310 L 402 340"/>
+    </g>
+    
+    <!-- 螃蟹眼睛 -->
+    <circle cx="230" cy="240" r="15" fill="white"/>
+    <circle cx="282" cy="240" r="15" fill="white"/>
+    <circle cx="230" cy="240" r="8" fill="#1a1a2e"/>
+    <circle cx="282" cy="240" r="8" fill="#1a1a2e"/>
+    
+    <!-- 高光 -->
+    <circle cx="225" cy="235" r="4" fill="white"/>
+    <circle cx="277" cy="235" r="4" fill="white"/>
+    
+    <!-- 微笑 -->
+    <path d="M 230 270 Q 256 285 282 270" stroke="#1a1a2e" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </svg>
+  
+  <script>
+    // 这个 SVG 可以作为应用图标
+    // 保存为 icon.svg 或使用在线工具转换为 .ico/.png
+    console.log('OpenClaw Chat Icon - 512x512px');
+  </script>
+</body>
+</html>

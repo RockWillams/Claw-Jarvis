@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm start:*)",
+      "Bash(tasklist:*)",
+      "Bash(taskkill:*)",
+      "Bash(openclaw gateway:*)",
+      "Bash(openclaw:*)",
+      "WebSearch",
+      "Bash(echo 尝试另一种方法:*)",
+      "WebFetch(domain:beaverslab.mintlify.app)",
+      "Bash(ls:*)",
+      "Bash(start notepad:*)",
+      "Bash(powershell:*)",
+      "Bash(dir:*)",
+      "Bash(netstat:*)",
+      "Bash(start:*)",
+      "Bash(ipconfig:*)",
+      "Bash(findstr:*)",
+      "Bash(cmd:*)",
+      "Bash(Get-Process:*)",
+      "Bash(wmic process:*)",
+      "Bash(curl:*)",
+      "Bash(npm run:*)",
+      "Bash(pkill:*)",
+      "Bash(git init:*)",
+      "Bash(git config:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

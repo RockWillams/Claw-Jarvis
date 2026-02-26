@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="">
+  <title>OpenClaw Chat</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- 侧边栏 - 会话列表 -->
+    <div id="sidebar" class="sidebar hidden">
+      <div class="sidebar-header">
+        <h3>💬 会话</h3>
+        <button id="new-session-btn" class="btn-icon" title="新建会话">+</button>
+      </div>
+      <div id="sessions-list" class="sessions-list">
+        <!-- 会话列表项 -->
+      </div>
+      <div class="sidebar-footer">
+        <button id="settings-btn" class="btn btn-small btn-full">⚙️ 设置</button>
+      </div>
+    </div>
+
+    <!-- 主聊天区域 -->
+    <div class="main-content">
+      <!-- 连接面板 -->
+      <div id="connect-panel" class="panel">
+        <div class="panel-content">
+          <div class="logo-area">
+            <div class="crab-logo">🦞</div>
+            <h1>OpenClaw Chat</h1>
+            <p class="subtitle">您的 AI 助手桌面客户端</p>
+          </div>
+          
+          <!-- Gateway 状态检测 -->
+          <div id="gateway-detect" class="gateway-detect">
+            <div class="detect-spinner"></div>
+            <span class="detect-text">正在检测 Gateway...</span>
+          </div>
+          
+          <div class="form-group">
+            <label for="session-name">会话名称</label>
+            <input type="text" id="session-name" placeholder="例如：工作助手、学习伙伴" value="默认会话">
+          </div>
+          
+          <div class="form-group">
+            <label for="gateway-url">
+              Gateway 地址
+              <span class="label-hint">通常是本地地址</span>
+            </label>
+            <div class="input-with-status">
+              <input type="text" id="gateway-url" value="http://127.0.0.1:18789" placeholder="http://127.0.0.1:18789">
+              <span id="gateway-status-icon" class="status-icon">⏳</span>
+            </div>
+            <div id="gateway-status-text" class="status-text">检测中...</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="gateway-token">
+              Gateway Token
+              <button type="button" id="token-help-btn" class="help-btn" title="如何获取 Token">❓</button>
+            </label>
+            <div class="input-with-button">
+              <input type="password" id="gateway-token" placeholder="输入您的 Gateway Token">
+              <button type="button" id="toggle-token" class="btn-small" title="显示/隐藏">👁️</button>
+            </div>
+            <div class="token-help-collapsed" id="token-help">
+              <p><strong>如何获取 Token：</strong></p>
+              <ol>
+                <li>打开文件：<code>%USERPROFILE%\.openclaw\openclaw.json</code></li>
+                <li>找到 <code>gateway.auth.token</code></li>
+                <li>复制 token 的值（一串字符）</li>
+              </ol>
+              <button id="copy-token-path" class="btn-mini">📋 复制配置文件路径</button>
+              <button id="open-token-file" class="btn-mini">📂 打开配置文件</button>
+            </div>
+          </div>
+          
+          <button id="connect-btn" class="btn btn-primary btn-large" disabled>
+            <span class="btn-text">连接</span>
+            <span class="btn-loading hidden">连接中...</span>
+          </button>
+          
+          <div id="connection-status" class="status"></div>
+          
+          <!-- 快速入门 -->
+          <div class="quick-start">
+            <details>
+              <summary>
+                <span class="summary-icon">🚀</span>
+                <span class="summary-text">首次使用？查看快速入门</span>
+              </summary>
+              <div class="quick-start-content">
+                <ol>
+                  <li>启动 OpenClaw Gateway：<code>openclaw gateway</code></li>
+                  <li>获取 Token（点击上方 ❓ 按钮）</li>
+                  <li>输入 Token 并点击"连接"</li>
+                  <li>开始聊天！</li>
+                </ol>
+                <div class="shortcuts">
+                  <h4>⌨️ 快捷键</h4>
+                  <div class="shortcut-list">
+                    <span><kbd>Ctrl+N</kbd> 新建会话</span>
+                    <span><kbd>Ctrl+T</kbd> 切换侧边栏</span>
+                    <span><kbd>Ctrl+E</kbd> 导出记录</span>
+                    <span><kbd>Enter</kbd> 发送消息</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- 聊天主界面 -->
+      <div id="chat-panel" class="panel hidden">
+        <!-- 顶部栏 -->
+        <div class="chat-header">
+          <div class="header-left">
+            <button id="toggle-sidebar" class="btn-icon" title="切换侧边栏 (Ctrl+T)">☰</button>
+            <div class="session-info">
+              <h2 id="current-session-name">会话名称</h2>
+              <span id="connection-indicator" class="indicator disconnected" title="连接状态"></span>
+              <span id="gateway-status" class="gateway-status">未连接</span>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button id="export-btn" class="btn btn-small" title="导出聊天记录 (Ctrl+E)">📥 导出</button>
+            <button id="clear-chat-btn" class="btn btn-small" title="清空聊天">🗑️ 清空</button>
+            <button id="disconnect-btn" class="btn btn-small btn-danger">断开</button>
+          </div>
+        </div>
+
+        <!-- 消息列表 -->
+        <div id="messages-container" class="messages-container">
+          <div id="messages" class="messages">
+            <div class="welcome-message">
+              <div class="welcome-icon">🦞</div>
+              <h3>欢迎使用 OpenClaw Chat!</h3>
+              <p>已连接到 <span id="welcome-gateway"></span></p>
+              <p class="hint">输入消息后按 Enter 发送，Shift+Enter 换行</p>
+            </div>
+          </div>
+          <!-- 打字指示器 -->
+          <div id="typing-indicator" class="typing-indicator hidden">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+
+        <!-- 输入区域 -->
+        <div class="input-area">
+          <!-- 文件预览区域 -->
+          <div id="file-preview-container" class="file-preview-container hidden"></div>
+
+          <div class="input-container">
+            <!-- 文件上传按钮 -->
+            <button id="upload-btn" class="btn-upload" title="上传文件/图片">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+              </svg>
+            </button>
+            <input type="file" id="file-input" class="hidden" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.md,.csv">
+            <textarea
+              id="message-input"
+              placeholder="输入消息... (支持拖拽上传文件)"
+              rows="1"
+            ></textarea>
+            <button id="send-btn" class="btn btn-primary" disabled title="发送 (Enter)">
+              <span class="send-text">发送</span>
+              <span class="send-icon">➤</span>
+            </button>
+          </div>
+          <div class="input-hints">
+            <span class="hint-item"><kbd>Enter</kbd> 发送</span>
+            <span class="hint-item"><kbd>Shift+Enter</kbd> 换行</span>
+            <span class="hint-item"><kbd>📎</kbd> 点击上传文件</span>
+            <span id="char-count" class="hint-item">0 字</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 设置面板 -->
+    <div id="settings-panel" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>⚙️ 设置</h3>
+          <button class="modal-close" id="settings-close" title="关闭">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-group">
+            <h4>界面设置</h4>
+            <div class="setting-item">
+              <label>
+                <input type="checkbox" id="setting-auto-scroll" checked>
+                <span>自动滚动到最新消息</span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <label>
+                <input type="checkbox" id="setting-show-timestamp" checked>
+                <span>显示消息时间戳</span>
+              </label>
+            </div>
+            <div class="setting-item">
+              <label>
+                <input type="checkbox" id="setting-markdown" checked>
+                <span>启用 Markdown 渲染</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="setting-group">
+            <h4>数据管理</h4>
+            <div class="setting-buttons">
+              <button id="clear-storage-btn" class="btn btn-small btn-danger">清除本地缓存</button>
+              <button id="export-all-btn" class="btn btn-small">导出所有会话</button>
+            </div>
+          </div>
+          
+          <div class="setting-group">
+            <h4>关于</h4>
+            <div class="about-info">
+              <div class="about-logo">🦞</div>
+              <p><strong>OpenClaw Chat UI</strong></p>
+              <p class="version">版本：1.0.0</p>
+              <p class="description">基于 Electron 开发的 OpenClaw 桌面聊天客户端</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast 通知 -->
+    <div id="toast" class="toast hidden">
+      <span id="toast-message"></span>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
