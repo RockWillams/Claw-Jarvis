@@ -45,13 +45,27 @@
 npm install
 ```
 
-### 2️⃣ 启动 OpenClaw Gateway
+### 2️⃣ 配置 OpenClaw Gateway
 
+> ⚠️ **重要**：在启动 Chat UI 之前，必须先配置并启动 OpenClaw Gateway。
+
+**安装 OpenClaw CLI（如果未安装）：**
 ```bash
-# 启动 Gateway（监听本地）
+npm install -g openclaw
+```
+
+**配置 Gateway：**
+```bash
+# 运行配置向导
+openclaw config
+```
+
+**启动 Gateway：**
+```bash
+# 本地模式（仅本机可访问）
 openclaw gateway
 
-# 如需允许内网其他设备访问，使用 --bind lan 参数
+# 局域网模式（允许内网其他设备访问）
 openclaw gateway run --bind lan
 ```
 
@@ -66,6 +80,85 @@ openclaw gateway run --bind lan
 ```bash
 npm start
 ```
+
+---
+
+## 🔧 OpenClaw 配置指南
+
+> 本章节详细说明如何配置 OpenClaw 以支持第三方聊天工具的连接。
+
+### 步骤 1：安装 OpenClaw CLI
+
+```bash
+npm install -g openclaw
+```
+
+### 步骤 2：配置 Gateway
+
+运行配置向导：
+```bash
+openclaw config
+```
+
+或手动设置关键配置项：
+
+```bash
+# 设置 Gateway 监听模式
+# loopback - 仅本机访问
+# lan - 局域网内所有设备可访问
+openclaw config set gateway.bind lan
+
+# 设置认证模式为 token
+openclaw config set gateway.auth.mode token
+
+# 设置 Gateway 端口（默认 18789）
+openclaw config set gateway.port 18789
+```
+
+### 步骤 3：获取 Gateway Token
+
+Token 位于配置文件中，路径：`%USERPROFILE%\.openclaw\openclaw.json`
+
+**查看配置文件：**
+```bash
+# Windows
+type %USERPROFILE%\.openclaw\openclaw.json
+
+# 或直接打开
+notepad %USERPROFILE%\.openclaw\openclaw.json
+```
+
+**找到以下字段：**
+```json
+{
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "你的 TOKEN（类似：n7SUZu6UDSzcNayZJZEQ-ifWdQ-pGlQXPt8uWCcLVvg）"
+    }
+  }
+}
+```
+
+复制 `token` 的值，在 Chat UI 连接时使用。
+
+### 步骤 4：启动 Gateway
+
+```bash
+# 前台运行
+openclaw gateway run --bind lan
+
+# 或作为后台服务运行
+openclaw gateway start
+```
+
+### 步骤 5：在 Chat UI 中连接
+
+1. 启动 Chat UI 应用
+2. 在连接面板输入：
+   - **Gateway 地址**：`http://127.0.0.1:18789`（本地）或 `http://<内网IP>:18789`（远程）
+   - **Token**：从配置文件中复制的 token 值
+3. 点击"连接"
 
 ---
 
@@ -87,6 +180,8 @@ npm start
 2. 打开文件：`%USERPROFILE%\.openclaw\openclaw.json`
 3. 找到 `gateway.auth.token`
 4. 复制 token 值
+
+或者参考上面的 **OpenClaw 配置指南** 章节。
 
 ### 内网远程访问配置
 
@@ -245,6 +340,12 @@ npm install
 - 现代化界面设计
 - 响应式布局
 - 性能优化
+
+---
+
+## 👥 作者
+
+- **rockwillams** - [GitHub](https://github.com/RockWillams)
 
 ---
 
