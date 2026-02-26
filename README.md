@@ -17,11 +17,12 @@
 ### 聊天对话界面
 ![聊天对话界面](assets/dialog.png)
 
-> 💡 **阿里云百炼 Coding Plan 优惠**：[立即领取优惠](https://www.aliyun.com/benefit/ai/aistar?clubBiz=subTask..12405075..10263..)
+> [!TIP]
+> **🔥 阿里云百炼 Coding Plan 优惠** → [立即领取优惠](https://www.aliyun.com/benefit/ai/aistar?clubBiz=subTask..12405075..10263..)
 
 ### 📱 技术交流群
 
-![技术交流群二维码](assets/weixin.png)
+<img src="assets/weixin.png" alt="技术交流群二维码" width="300" />
 
 ---
 
