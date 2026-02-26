@@ -9,6 +9,16 @@
 
 ---
 
+## 📸 界面预览
+
+### 连接界面
+![连接界面](assets/login.png)
+
+### 聊天对话界面
+![聊天对话界面](assets/dialog.png)
+
+---
+
 ## ✨ 核心特性
 
 ### 🎨 现代化界面
@@ -223,16 +233,6 @@ New-NetFirewallRule -DisplayName "OpenClaw Gateway" -Direction Inbound -LocalPor
 | `F12` | 开发者工具 |
 | `Enter` | 发送消息 |
 | `Shift+Enter` | 换行 |
-
----
-
-## 📸 界面预览
-
-### 连接界面
-![连接界面](assets/login.png)
-
-### 聊天对话界面
-![聊天对话界面](assets/dialog.png)
 
 ---
 
