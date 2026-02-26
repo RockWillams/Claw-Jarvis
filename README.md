@@ -17,6 +17,8 @@
 ### 聊天对话界面
 ![聊天对话界面](assets/dialog.png)
 
+> 💡 **阿里云百炼 Coding Plan 优惠**：[立即领取优惠](https://www.aliyun.com/benefit/ai/aistar?clubBiz=subTask..12405075..10263..)
+
 ---
 
 ## ✨ 核心特性
